@@ -80,7 +80,7 @@ Pour réussir votre capture, vous pouvez procéder de la manière suivante :
 
 ---
 
-> **_Question:_**Arrivez-vous à voir l’identité du client dans la phase d'initiation ? Oui ? Non ? Pourquoi ?
+> **_Question:_** Arrivez-vous à voir l’identité du client dans la phase d'initiation ? Oui ? Non ? Pourquoi ?
 > 
 > **_Réponse:_** 
 
