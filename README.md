@@ -121,19 +121,28 @@ Pour implémenter l’attaque :
 
 > **_Question :_** Quelles modifications sont nécessaires dans la configuration de hostapd-wpe pour cette attaque ?
 > 
-> **_Réponse :_** 
-
+> **_Réponse :_**
+> Afin de créer un evil twin d'un réseau, il est nécessaire de modifier le *SSID* et le *channel* cible selon le réseau à attaquer.
+> Il est aussi nécessaire de modifier l'*interface* utilisée.
 ---
 
-> **_Question:_** Quel type de hash doit-on indiquer à john ou l'outil que vous avez employé pour craquer le handshake ?
+> **_Question :_** Quel type de hash doit-on indiquer à john ou l'outil que vous avez employé pour craquer le handshake ?
 > 
-> **_Réponse:_** 
+> **_Réponse :_**
+> Les hash produits par hostapd-wpe sont en format NETNTLM. Selon la documentation : "...MSCHAPv2 credentials are outputted in john the rippers NETNTLM format.".
 
 ---
 
 > **_Question:_** Quelles méthodes d’authentification sont supportées par hostapd-wpe ?
 > 
 > **_Réponse:_**
+> L'outil supporte 6 modes d'authentification différents :
+> - EAP-FAST/MSCHAPv2 (Phase 0)
+> - PEAP/MSCHAPv2
+> - EAP-TTLS/MSCHAPv2
+> - EAP-TTLS/MSCHAP
+> - EAP-TTLS/CHAP
+> - EAP-TTLS/PAP
 
 
 ### 3. En option, vous pouvez explorer d'autres outils comme [eapeak](https://github.com/rsmusllp/eapeak) ou [crEAP](https://github.com/W9HAX/crEAP/blob/master/crEAP.py) pour les garder dans votre arsenal de pentester.
