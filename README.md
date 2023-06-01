@@ -148,7 +148,6 @@ Pour implémenter l’attaque :
 > 
 > **_Réponse :_**
 > Les hash produits par hostapd-wpe sont en format NETNTLM. Selon la documentation : "...MSCHAPv2 credentials are outputted in john the rippers NETNTLM format.".
-
 ---
 
 > **_Question:_** Quelles méthodes d’authentification sont supportées par hostapd-wpe ?
@@ -162,6 +161,10 @@ Pour implémenter l’attaque :
 > - EAP-TTLS/CHAP
 > - EAP-TTLS/PAP
 
+
+![](files/hostapd-cap.png)
+
+![](files/asleap-attack.png)
 
 ### 3. En option, vous pouvez explorer d'autres outils comme [eapeak](https://github.com/rsmusllp/eapeak) ou [crEAP](https://github.com/W9HAX/crEAP/blob/master/crEAP.py) pour les garder dans votre arsenal de pentester.
 
