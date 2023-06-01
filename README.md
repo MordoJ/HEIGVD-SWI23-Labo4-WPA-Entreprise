@@ -52,49 +52,67 @@ Pour réussir votre capture, vous pouvez procéder de la manière suivante :
 -   Etablir une connexion depuis un poste de travail (PC), un smartphone ou n'importe quel autre client WiFi. __Attention__, il est important que la connexion se fasse à 2.4 GHz pour pouvoir sniffer avec les interfaces Alfa
 - Comparer votre capture au processus d’authentification donné en théorie (n’oubliez pas les captures d'écran pour illustrer vos comparaisons !). En particulier, identifier les étapes suivantes :
 	- Requête et réponse d’authentification système ouvert
+	![Authentification système ouvert 1](files/captures/authentication_open_sys_1.png)
+	![Authentification système ouvert 2](files/captures/authentication_open_sys_2.png)
  	- Requête et réponse d’association (ou reassociation)
+	![Reassociation request](files/captures/reassociation_request.png)
+	![Reassociation response](files/captures/reassociation_response.png)
 	- Négociation de la méthode d’authentification entreprise (TLS?, TTLS?, PEAP?, LEAP?, autre?)
+	![Request TLS EAP](files/captures/request_tls_eap.png)
+	![Response TLS EAP](files/captures/response_tls_eap.png)
+	![Request PEAP](files/captures/request_peap.png)
 	- Phase d’initiation
 	- Phase hello :
 		- Version TLS
+	![Version TLS](files/captures/version_tls.png)
 		- Suites cryptographiques et méthodes de compression proposées par le client et acceptées par l’AP
+	![Cipher suites](files/captures/cipher_suites.png)
+	![Compression methods](files/captures/methode_compression.png)
 		- Nonces
+	![Nonces](files/captures/nonce.png)
 		- Session ID
+	![Session ID](files/captures/session_id.png)
 	- Phase de transmission de certificats
 	 	- Echanges des certificats
+	![Certificats exchanges](files/captures/certificate_exchange.png)
 		- Change cipher spec
+	![Change cipher spec](files/captures/change_cipher_spec.png)
 	- Authentification interne et transmission de la clé WPA (échange chiffré, vu par Wireshark comme « Application data »)
+	![Application data](files/captures/application_data.png)
 	- 4-way handshake
+	![4-way handshake](files/captures/4_way_handshake.png)
 
 ### Répondez aux questions suivantes :
  
 > **_Question :_** Quelle ou quelles méthode(s) d’authentification est/sont proposé(s) au client ?
 > 
-> **_Réponse :_** 
-
+> **_Réponse :_** On voit que le protocole EAP-TLS est proposé en premier mais que EAP-PEAP est ensuite proposé.
 ---
 
 > **_Question:_** Quelle méthode d’authentification est finalement utilisée ?
 > 
-> **_Réponse:_** 
+> **_Réponse:_** C'est bien le protocole EAP-PEAP qui est utilisé.
 
 ---
 
 > **_Question:_** Arrivez-vous à voir l’identité du client dans la phase d'initiation ? Oui ? Non ? Pourquoi ?
 > 
-> **_Réponse:_** 
-
+> **_Réponse:_** Oui, il est possible de voir l'identité du client.
+![Client identity](files/captures/request_identity.png)
+C'est le cas car dans le protocole PEAP, lors de la phase d'authentification du client, le serveur a besoin de son nom d'utilisateur comme on peut le voir dans la théorie ci-dessous :
+![Client identity theory](files/captures/request_identity_theory.png)
 ---
 
 > **_Question:_** Lors de l’échange de certificats entre le serveur d’authentification et le client :
 > 
 > - a. Le serveur envoie-t-il un certificat au client ? Pourquoi oui ou non ?
 > 
-> **_Réponse:_**
+> **_Réponse:_** Oui, le serveur envoit ses certificats au client pour lui pouver son identité.
+![Server certificate](files/captures/certificates_server.png)
 > 
 > - b. Le client envoie-t-il un certificat au serveur ? Pourquoi oui ou non ?
 > 
-> **_Réponse:_**
+> **_Réponse:_** Non, le client n'envoit pas de certificat au serveur, il utilise les identifiants de l'utilisateur pour s'authentifier dans le réseau.
 > 
 
 ---
